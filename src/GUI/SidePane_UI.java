@@ -1,10 +1,10 @@
 package GUI;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 /**
  * Created by Stormwind on 13/05/2016.
@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 public class SidePane_UI
 {
     Button newArtist, newVenue, newContactPerson, history, newBooking;
+    Text text;
     GridPane gridPane;
 
     public Pane sidePane()
@@ -30,19 +31,22 @@ public class SidePane_UI
 
         newBooking = new Button("New Booking");
         newBooking.setStyle("-fx-border-color: darkred");
-
         newBooking.setPrefSize(150, 40);
+
+        text = new Text("Menu");
+        text.setStyle("-fx-font-size: 200%");
+
 
         gridPane = new GridPane();
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(0, 30, 30, 30));
-//        gridPane.setAlignment(Pos.TOP_CENTER);
 
-        gridPane.add(newArtist, 0, 3, 2, 1);
-        gridPane.add(newVenue, 0, 6, 2, 1);
-        gridPane.add(newContactPerson, 0, 9, 2, 1);
-        gridPane.add(history, 0, 12, 2, 1);
-        gridPane.add(newBooking, 0, 30, 2, 1);
+        gridPane.add(text, 0, 3, 2, 1);
+        gridPane.add(newArtist, 0, 6, 2, 1);
+        gridPane.add(newVenue, 0, 9, 2, 1);
+        gridPane.add(newContactPerson, 0, 12, 2, 1);
+        gridPane.add(history, 0, 15, 2, 1);
+        gridPane.add(newBooking, 0, 33, 2, 1);
 
         return gridPane;
     }

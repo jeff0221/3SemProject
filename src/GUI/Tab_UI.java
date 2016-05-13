@@ -1,5 +1,6 @@
 package GUI;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
@@ -14,6 +15,8 @@ public class Tab_UI
     public TabPane tabPane_UI()
     {
         tabPane = new TabPane();
+        tabPane.setPadding(new Insets(30));
+        tabPane.setTabMinWidth(100);
         artistTab = new Tab("Artist");
         artistTab.setClosable(false);
         venueTab = new Tab("Venue");
