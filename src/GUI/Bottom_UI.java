@@ -15,7 +15,7 @@ public class Bottom_UI
     public VBox bottomLine()
     {
         exit = new Button("Exit");
-        exit.setPrefSize(100, 20);
+        exit.setPrefSize(120, 30);
 
         vBox = new VBox();
         vBox.setAlignment(Pos.CENTER_RIGHT);
