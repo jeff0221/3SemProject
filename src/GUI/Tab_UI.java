@@ -10,27 +10,23 @@ import javafx.scene.control.TabPane;
 public class Tab_UI
 {
     TabPane tabPane;
-    Tab artistTab, venueTab, dateTab, priceTab, bookingTab, contactPersonTab;
+    Tab artistTab, venueTab, bookingTab, contactPersonTab;
 
     public TabPane tabPane_UI()
     {
         tabPane = new TabPane();
         tabPane.setPadding(new Insets(30));
-        tabPane.setTabMinWidth(100);
+        tabPane.setTabMinWidth(150);
         artistTab = new Tab("Artist");
         artistTab.setClosable(false);
         venueTab = new Tab("Venue");
         venueTab.setClosable(false);
-        dateTab = new Tab("Date");
-        dateTab.setClosable(false);
-        priceTab = new Tab("Price");
-        priceTab.setClosable(false);
         bookingTab = new Tab("Bookings");
         bookingTab.setClosable(false);
         contactPersonTab = new Tab("Contact Person");
         contactPersonTab.setClosable(false);
 
-        tabPane.getTabs().addAll(bookingTab, contactPersonTab, artistTab, venueTab, dateTab, priceTab);
+        tabPane.getTabs().addAll(bookingTab, contactPersonTab, artistTab, venueTab);
 
 //        bookingTab.setContent();
 //        contactPersonTab.setContent();

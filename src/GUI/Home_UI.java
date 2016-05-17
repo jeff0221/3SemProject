@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 public class Home_UI
 {
     BorderPane borderPane;
+
     private static Home_UI instance = null;
 
     public Home_UI()
