@@ -23,24 +23,26 @@ public class SidePane_UI
     Text text;
     GridPane gridPane;
 
-    Stage primaryStage;
+    AddNewArtist_UI addNewArtist = new AddNewArtist_UI();
+    AddNewVenue_UI addNewVenue = new AddNewVenue_UI();
+    AddNewContactPerson_UI addNewContactPerson = new AddNewContactPerson_UI();
 
-    public SidePane_UI(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+    public SidePane_UI() {
     }
 
     public Pane sidePane()
     {
         newArtist = new Button("New Artist");
         newArtist.setPrefSize(150, 20);
+        newArtist.setOnAction(e -> addNewArtist());
 
         newVenue = new Button("New Venue");
         newVenue.setPrefSize(150, 20);
-        newVenue.setOnAction(e -> addVenue());
+        newVenue.setOnAction(e -> addNewVenue());
 
         newContactPerson = new Button("New Contact Person");
         newContactPerson.setPrefSize(150, 20);
-        newContactPerson.setOnAction(e -> addContactPerson());
+        newContactPerson.setOnAction(e -> addNewContactPerson());
 
         history = new Button("History");
         history.setPrefSize(150, 20);
@@ -67,96 +69,15 @@ public class SidePane_UI
         return gridPane;
     }
 
-    public void addContactPerson() {
-        Stage addContactPersonStage = new Stage();
-        GridPane gridPane = new GridPane();
-
-        Label firstName = new Label("First name: ");
-        Label lastName = new Label("Last name: ");
-        Label phoneNumber = new Label("Phone number: ");
-        Label emailAddress = new Label("Email address: ");
-
-        TextField tfFirstName = new TextField();
-        TextField tfLastName = new TextField();
-        TextField tfPhoneNumber = new TextField();
-        TextField tfEmailAddress = new TextField();
-
-        Button btnAdd = new Button("Add");
-        Button btnCancel = new Button("Cancel");
-
-        HBox btnCancelContainer = new HBox();
-
-        gridPane.add(firstName, 0, 0);
-        gridPane.add(lastName, 0, 1);
-        gridPane.add(phoneNumber, 0, 2);
-        gridPane.add(emailAddress, 0, 3);
-
-        gridPane.add(tfFirstName, 1, 0);
-        gridPane.add(tfLastName, 1, 1);
-        gridPane.add(tfPhoneNumber, 1, 2);
-        gridPane.add(tfEmailAddress, 1, 3);
-
-        btnCancelContainer.getChildren().addAll(btnCancel);
-        btnCancelContainer.setAlignment(Pos.BASELINE_RIGHT);
-
-        gridPane.add(btnAdd, 0, 4);
-        gridPane.add(btnCancelContainer, 1, 4);
-
-        gridPane.setHgap(10);
-        gridPane.setVgap(10);
-
-        gridPane.setPadding(new Insets(20, 20, 20, 20));
-
-        Scene scene = new Scene(gridPane);
-
-        addContactPersonStage.setScene(scene);
-        addContactPersonStage.initModality(Modality.APPLICATION_MODAL);
-        addContactPersonStage.showAndWait();
+    public void addNewArtist() {
+        addNewArtist.showAndWait();
     }
 
-    public void addVenue() {
-        Stage addVenueStage = new Stage();
-        GridPane gridPane = new GridPane();
+    public void addNewVenue() {
+        addNewVenue.showAndWait();
+    }
 
-        Label name = new Label("Name: ");
-        Label location = new Label("Location: ");
-        Label date = new Label("Date: ");
-
-        name.setPrefWidth(80);
-        location.setPrefWidth(80);
-        date.setPrefWidth(80);
-
-        TextField tfName = new TextField();
-        TextField tfLocation = new TextField();
-
-        Button btnAdd = new Button("Add");
-        Button btnCancel = new Button("Cancel");
-
-        HBox btnCancelContainer = new HBox();
-
-        DatePicker venueDatePicker = new DatePicker();
-
-        gridPane.add(name, 0, 0);
-        gridPane.add(location, 0, 1);
-        gridPane.add(date, 0, 2);
-
-        gridPane.add(tfName, 1, 0);
-        gridPane.add(tfLocation, 1, 1);
-        gridPane.add(venueDatePicker, 1, 2);
-
-        btnCancelContainer.getChildren().addAll(btnCancel);
-        btnCancelContainer.setAlignment(Pos.BASELINE_RIGHT);
-
-        gridPane.add(btnAdd, 0, 4);
-        gridPane.add(btnCancelContainer, 1, 4);
-
-        gridPane.setVgap(10);
-        gridPane.setPadding(new Insets(20, 20, 20, 20));
-
-        Scene scene = new Scene(gridPane);
-
-        addVenueStage.setScene(scene);
-        addVenueStage.initModality(Modality.APPLICATION_MODAL);
-        addVenueStage.showAndWait();
+    public void addNewContactPerson() {
+        addNewContactPerson.showAndWait();
     }
 }

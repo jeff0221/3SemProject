@@ -18,7 +18,7 @@ public class Start_UI extends Application
     public void start(Stage primaryStage) throws Exception
     {
 
-        SidePane_UI side = new SidePane_UI(primaryStage);
+        SidePane_UI side = new SidePane_UI();
         Bottom_UI bottom = new Bottom_UI();
         Home_UI home = new Home_UI();
         Top_UI top = new Top_UI();
