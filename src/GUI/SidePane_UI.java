@@ -1,18 +1,10 @@
 package GUI;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 /**
  * Created by Stormwind on 13/05/2016.
@@ -27,7 +19,9 @@ public class SidePane_UI
     AddNewVenue_UI addNewVenue = new AddNewVenue_UI();
     AddNewContactPerson_UI addNewContactPerson = new AddNewContactPerson_UI();
 
-    public SidePane_UI() {
+    public SidePane_UI()
+    {
+
     }
 
     public Pane sidePane()
@@ -54,7 +48,6 @@ public class SidePane_UI
         text = new Text("Menu");
         text.setStyle("-fx-font-size: 200%");
 
-
         gridPane = new GridPane();
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(0, 30, 30, 30));
@@ -64,20 +57,23 @@ public class SidePane_UI
         gridPane.add(newVenue, 0, 9, 2, 1);
         gridPane.add(newContactPerson, 0, 12, 2, 1);
         gridPane.add(history, 0, 15, 2, 1);
-        gridPane.add(newBooking, 0, 33, 2, 1);
+        gridPane.add(newBooking, 0, 22, 2, 1);
 
         return gridPane;
     }
 
-    public void addNewArtist() {
+    public void addNewArtist()
+    {
         addNewArtist.showAndWait();
     }
 
-    public void addNewVenue() {
+    public void addNewVenue()
+    {
         addNewVenue.showAndWait();
     }
 
-    public void addNewContactPerson() {
+    public void addNewContactPerson()
+    {
         addNewContactPerson.showAndWait();
     }
 }

@@ -19,8 +19,8 @@ public class Top_UI
         vBox.setAlignment(Pos.TOP_LEFT);
 
         imageView = new ImageView(new Image(getClass().getResourceAsStream("/Image/logo.png")));
-        imageView.setFitHeight(100);
-        imageView.setFitWidth(300);
+        imageView.setFitHeight(80);
+        imageView.setFitWidth(240);
         vBox.getChildren().add(imageView);
 
         return vBox;

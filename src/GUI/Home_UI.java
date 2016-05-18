@@ -37,7 +37,7 @@ public class Home_UI
         borderPane.setLeft(sidePane);
         borderPane.setTop(top);
         borderPane.setBottom(bottom);
-        borderPane.setPrefSize(1200, 800);
+        borderPane.setPrefSize(1000, 600);
         borderPane.setPadding(new Insets(20));
 
         return borderPane;

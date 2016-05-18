@@ -24,7 +24,7 @@ public class Start_UI extends Application
         Top_UI top = new Top_UI();
         Tab_UI tab = new Tab_UI();
 
-        Scene scene = new Scene(home.homePane(side.sidePane(), bottom.bottomLine(), top.logo(), tab.tabPane_UI()), 1200, 800);
+        Scene scene = new Scene(home.homePane(side.sidePane(), bottom.bottomLine(), top.logo(), tab.tabPane_UI()));
         primaryStage.setScene(scene);
         primaryStage.setTitle("Artifacts Agency");
         primaryStage.show();
