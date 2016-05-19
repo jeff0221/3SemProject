@@ -1,19 +1,23 @@
 package Model;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 /**
  * Created by Zonde on 13-05-2016.
  */
 
 public class Database
 {
-    private Database instance;
+    private static Database instance;
+    private Connection con;
 
     private Database()
     {
         connectToDatabase();
     }
 
-    public Database getInstance()
+    public static Database getInstance()
     {
         if(instance == null)
         {
@@ -27,6 +31,24 @@ public class Database
     }
     public void connectToDatabase()
     {
+        try {
+
+            System.out.println("Starting up DataBase");
+
+            Class.forName("com.mysql.jdbc.Driver");
+
+            String url = "jdbc:mysql://localhost:3306/";
+
+            con = DriverManager.getConnection(url, "root", "Indsæt jeres password her");
+
+            System.out.println("URL: " + url);
+
+            System.out.println("Connection: " + con);
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
 
     }
     public void insertPerson(Person person)

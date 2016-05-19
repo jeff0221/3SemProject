@@ -1,5 +1,6 @@
 package GUI;
 
+import Model.Database;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -9,6 +10,8 @@ import javafx.stage.Stage;
  */
 public class Start_UI extends Application
 {
+    Database dataBase;
+
     public static void main(String[] args)
     {
         launch(args);
@@ -17,6 +20,8 @@ public class Start_UI extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
+
+        dataBase = Database.getInstance();
 
         SidePane_UI side = new SidePane_UI();
         Bottom_UI bottom = new Bottom_UI();
