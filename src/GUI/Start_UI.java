@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 public class Start_UI extends Application
 {
     Database dataBase;
+    Scene scene;
+    public static Stage stage;
 
     public static void main(String[] args)
     {
@@ -20,19 +22,30 @@ public class Start_UI extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-
         dataBase = Database.getInstance();
 
+        stage = primaryStage;
+        mainStage();
+    }
+
+    public Stage mainStage()
+    {
         SidePane_UI side = new SidePane_UI();
         Bottom_UI bottom = new Bottom_UI();
         Home_UI home = new Home_UI();
         Top_UI top = new Top_UI();
         Tab_UI tab = new Tab_UI();
 
-        Scene scene = new Scene(home.homePane(side.sidePane(), bottom.bottomLine(), top.logo(), tab.tabPane_UI()));
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Artifacts Agency");
-        primaryStage.show();
+        scene = new Scene(home.homePane(side.sidePane(), bottom.bottomLine(), top.logo(), tab.tabPane_UI()));
+        stage.setScene(scene);
+        stage.setTitle("Artifacts Agency");
+        stage.show();
+
+        return stage;
     }
 
+    public void close()
+    {
+        stage.close();
+    }
 }

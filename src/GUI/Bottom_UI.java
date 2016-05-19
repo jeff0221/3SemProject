@@ -7,7 +7,7 @@ import javafx.scene.layout.VBox;
 /**
  * Created by Stormwind on 13/05/2016.
  */
-public class Bottom_UI
+public class Bottom_UI extends Start_UI
 {
     Button exit;
     VBox vBox;
@@ -16,6 +16,7 @@ public class Bottom_UI
     {
         exit = new Button("Exit");
         exit.setPrefSize(120, 30);
+        exit.setOnAction(event -> close());
 
         vBox = new VBox();
         vBox.setAlignment(Pos.CENTER_RIGHT);

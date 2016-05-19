@@ -20,6 +20,7 @@ public class AddNewVenue_UI
 {
 
     private Scene scene;
+    private Stage addVenueStage;
     private GridPane gridPane = new GridPane();
 
     private Label cvr = new Label("CVR.: ");
@@ -66,14 +67,21 @@ public class AddNewVenue_UI
         gridPane.setPadding(new Insets(20, 20, 20, 20));
 
         scene = new Scene(gridPane);
+
+        btnCancel.setOnAction(event -> close());
     }
 
     public void showAndWait()
     {
-        Stage addVenueStage = new Stage();
+        addVenueStage = new Stage();
 
         addVenueStage.setScene(scene);
         addVenueStage.initModality(Modality.APPLICATION_MODAL);
         addVenueStage.showAndWait();
+    }
+
+    public void close()
+    {
+        addVenueStage.close();
     }
 }

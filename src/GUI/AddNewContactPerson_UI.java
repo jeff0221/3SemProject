@@ -19,6 +19,7 @@ public class AddNewContactPerson_UI
 {
 
     private Scene scene;
+    private Stage addContactPersonStage;
     private GridPane gridPane = new GridPane();
 
     private Label firstName = new Label("First name: ");
@@ -69,14 +70,21 @@ public class AddNewContactPerson_UI
         gridPane.setPadding(new Insets(20, 20, 20, 20));
 
         scene = new Scene(gridPane);
+
+        btnCancel.setOnAction(event -> close());
     }
 
     public void showAndWait()
     {
-        Stage addContactPersonStage = new Stage();
+        addContactPersonStage = new Stage();
 
         addContactPersonStage.setScene(scene);
         addContactPersonStage.initModality(Modality.APPLICATION_MODAL);
         addContactPersonStage.showAndWait();
+    }
+
+    public void close()
+    {
+        addContactPersonStage.close();
     }
 }

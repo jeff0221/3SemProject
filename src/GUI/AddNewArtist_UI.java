@@ -15,11 +15,10 @@ import javafx.stage.Stage;
 /**
  * Created by Lasse Jensen on 17-05-2016.
  */
-public class AddNewArtist_UI {
-
-    private Stage addNewArtistStage = new Stage();
-
+public class AddNewArtist_UI
+{
     private Scene scene;
+    private Stage addNewArtistStage;
 
     private GridPane gridPane = new GridPane();
 
@@ -71,13 +70,20 @@ public class AddNewArtist_UI {
         gridPane.setPadding(new Insets(20, 20, 20, 20));
 
         scene = new Scene(gridPane);
+
+        btnCancel.setOnAction(event -> close());
     }
 
-    public void showAndWait() {
-        Stage addNewArtistStage = new Stage();
-
+    public void showAndWait()
+    {
+        addNewArtistStage = new Stage();
         addNewArtistStage.setScene(scene);
         addNewArtistStage.initModality(Modality.APPLICATION_MODAL);
         addNewArtistStage.showAndWait();
+    }
+
+    public void close()
+    {
+        addNewArtistStage.close();
     }
 }
