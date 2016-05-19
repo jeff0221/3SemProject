@@ -9,9 +9,9 @@ public class Artist extends Person
     private String cpr;
     private String artistName;
 
-    public Artist(String firstName, String lastName, String address, int phoneNumber, String cpr, String artistName)
+    public Artist(String firstName, String lastName, String address, int phoneNumber,String email, String cpr, String artistName)
     {
-        super(firstName, lastName, address, phoneNumber);
+        super(firstName, lastName, address, phoneNumber,email);
         this.cpr = cpr;
         this.artistName = artistName;
     }

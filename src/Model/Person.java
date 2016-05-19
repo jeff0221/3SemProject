@@ -10,18 +10,20 @@ public abstract class Person
     private String lastName;
     private int phoneNumber;
     private String address;
+    private String email;
 
     public Person()
     {
 
     }
 
-    public Person(String firstName, String lastName, String address, int phoneNumber)
+    public Person(String firstName, String lastName, String address, int phoneNumber, String email)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 
     public String getAddress()
@@ -62,5 +64,15 @@ public abstract class Person
     public void setPhoneNumber(int phoneNumber)
     {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
     }
 }

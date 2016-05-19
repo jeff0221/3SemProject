@@ -5,21 +5,9 @@ package Model;
  */
 public class ContactPerson extends Person
 {
-    private String email;
-
     public ContactPerson(String firstName, String lastName, String address, int phoneNumber, String email)
     {
-        super(firstName, lastName, address, phoneNumber);
-        this.email = email;
+        super(firstName, lastName, address, phoneNumber, email);
     }
 
-    public String getEmail()
-    {
-        return email;
-    }
-
-    public void setEmail(String email)
-    {
-        this.email = email;
-    }
 }

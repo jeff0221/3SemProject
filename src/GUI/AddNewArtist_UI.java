@@ -17,6 +17,7 @@ import javafx.stage.Stage;
  */
 public class AddNewArtist_UI
 {
+
     private Scene scene;
     private Stage addNewArtistStage;
 
@@ -27,12 +28,14 @@ public class AddNewArtist_UI
     private Label lastName = new Label("Last name: ");
     private Label phoneNumber = new Label("Phone number: ");
     private Label address = new Label("Address: ");
+    private Label email = new Label("Email address: ");
 
     private TextField tfCpr = new TextField();
     private TextField tfFirstName = new TextField();
     private TextField tfLastName = new TextField();
     private TextField tfPhoneNumber = new TextField();
     private TextField tfAddress = new TextField();
+    private TextField tfemail = new TextField();
 
     private Button btnAdd = new Button("Add");
     private Button btnCancel = new Button("Cancel");
@@ -50,19 +53,21 @@ public class AddNewArtist_UI
         gridPane.add(firstName, 0, 2);
         gridPane.add(lastName, 0, 3);
         gridPane.add(address, 0, 4);
-        gridPane.add(phoneNumber, 0, 5);
+        gridPane.add(email, 0, 5);
+        gridPane.add(phoneNumber, 0, 6);
 
         gridPane.add(tfCpr, 1, 1);
         gridPane.add(tfFirstName, 1, 2);
         gridPane.add(tfLastName, 1, 3);
         gridPane.add(tfAddress, 1, 4);
-        gridPane.add(tfPhoneNumber, 1, 5);
+        gridPane.add(tfemail, 1, 5);
+        gridPane.add(tfPhoneNumber, 1, 6);
 
         btnCancelContainer.getChildren().addAll(btnCancel);
         btnCancelContainer.setAlignment(Pos.BASELINE_RIGHT);
 
-        gridPane.add(btnAdd, 0, 6);
-        gridPane.add(btnCancelContainer, 1, 6);
+        gridPane.add(btnAdd, 0, 7);
+        gridPane.add(btnCancelContainer, 1, 7);
 
         gridPane.setHgap(10);
         gridPane.setVgap(10);

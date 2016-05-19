@@ -33,7 +33,6 @@ public class Venue
 
     public String getName()
     {
-
         return name;
     }
 
