@@ -16,7 +16,7 @@ public class Database
     private PreparedStatement statement;
     private ResultSet resultSet;
 
-    private final String DB_PASSWORD = "doggyspy";
+    private final String DB_PASSWORD = "Insert MySQL password here";
 
     private Database()
     {
@@ -40,15 +40,12 @@ public class Database
         try {
 
             System.out.println("Starting up DataBase");
-
             Class.forName("com.mysql.jdbc.Driver");
-
             String url = "jdbc:mysql://localhost:3306/";
 
             con = DriverManager.getConnection(url, "root", DB_PASSWORD);
 
             System.out.println("URL: " + url);
-
             System.out.println("Connection: " + con);
 
             checkDB();
@@ -69,17 +66,22 @@ public class Database
         } catch (MySQLSyntaxErrorException e) {
             System.out.println("Database does not exist creating database Artifacts_Agency");
             createDB();
+
+            try {
+                statement = con.prepareStatement("USE Artifacts_Agency");
+                statement.executeUpdate();
+            } catch (Exception e2) {
+                e.printStackTrace();
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        try {
-            statement = con.prepareStatement("USE Artifacts_Agency");
-            statement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        checkTables();
+    }
 
+    private void checkTables() {
         try {
             statement = con.prepareStatement("SELECT * FROM Artist");
             resultSet = statement.executeQuery();
@@ -187,23 +189,6 @@ public class Database
 
     }
 
-    public void getContactPersons() {
-        System.out.println("Getting contact persons");
-
-        try {
-            statement = con.prepareStatement("SELECT * FROM ContactPerson");
-            resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("firstname"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println();
-    }
-
     public void getContactPersons(List<ContactPerson> contactPersons) {
         System.out.println("Loading contact persosns");
 
@@ -251,23 +236,6 @@ public class Database
 
     }
 
-    public void getArtists() {
-        System.out.println("Getting artits");
-
-        try {
-            statement = con.prepareStatement("SELECT * FROM Artist");
-            resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("firstname"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println();
-    }
-
     public void getArtists(List<Artist> artistList) {
         System.out.println("Loading artists");
 
@@ -304,22 +272,6 @@ public class Database
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public void getVenues() {
-        System.out.println("Getting venues");
-        try {
-            statement = con.prepareStatement("SELECT * FROM Venue");
-            resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("address"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println();
     }
 
     public void getVenues(List<Venue> venueList) {
@@ -368,23 +320,6 @@ public class Database
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public void getBookings() {
-        System.out.println("Getting bookings");
-
-        try {
-            statement = con.prepareStatement("SELECT * FROM Booking");
-            resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("cpr"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println();
     }
 
     public void getBookings(List<Booking> bookingList) {
