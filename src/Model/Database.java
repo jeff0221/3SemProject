@@ -3,6 +3,7 @@ package Model;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
 
 import java.sql.*;
+import java.util.List;
 
 /**
  * Created by Zonde on 13-05-2016.
@@ -15,7 +16,7 @@ public class Database
     private PreparedStatement statement;
     private ResultSet resultSet;
 
-    private final String DB_PASSWORD = "Insert MySQL password here";
+    private final String DB_PASSWORD = "doggyspy";
 
     private Database()
     {
@@ -157,22 +158,187 @@ public class Database
         }
     }
 
-    public void insertPerson(Person person)
+
+
+    public void insertContactPerson(ContactPerson person)
+    {
+        System.out.println("Inserting contact person into database");
+
+        try {
+            statement = con.prepareStatement("INSERT INTO ContactPerson (email, firstname, lastname, address, telephone) VALUES(?, ?, ?, ?, ?)");
+
+            statement.setString(1, person.getEmail());
+            statement.setString(2, person.getFirstName());
+            statement.setString(3, person.getLastName());
+            statement.setString(4, person.getAddress());
+            statement.setInt(5, person.getPhoneNumber());
+
+            statement.executeUpdate();
+
+            System.out.println("Contact person added");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteContactPerson(Person person)
     {
 
     }
-    public void deletePerson(Person person)
+
+    public void getContactPersons() {
+        System.out.println("Getting contact persons");
+
+        try {
+            statement = con.prepareStatement("SELECT * FROM ContactPerson");
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("firstname"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println();
+    }
+
+    public void getContactPersons(List<ContactPerson> contactPersons) {
+        System.out.println("Loading contact persosns");
+
+        try {
+            statement = con.prepareStatement("SELECT * FROM ContactPerson");
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                contactPersons.add(new ContactPerson(resultSet.getString("firstName"), resultSet.getString("lastName"), resultSet.getString("address"), resultSet.getInt("telephone"), resultSet.getString("email")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void updateContactPerson(Person person)
     {
 
     }
-    public void updatePerson(Person person)
-    {
+
+    public void insertArtist(Artist artist) {
+        System.out.println("Inserting artist into database");
+
+        try {
+            statement = con.prepareStatement("INSERT INTO Artist (cpr, artistname, firstname, lastname, address, telephone) VALUES(?, ?, ?, ?, ?, ?)");
+
+            statement.setString(1, artist.getCpr());
+            statement.setString(2, artist.getArtistName());
+            statement.setString(3, artist.getFirstName());
+            statement.setString(4, artist.getLastName());
+            statement.setString(5, artist.getAddress());
+            statement.setInt(6, artist.getPhoneNumber());
+
+            statement.executeUpdate();
+
+            System.out.println("Artist added");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateArtist(Artist artist) {
 
     }
+
+    public void getArtists() {
+        System.out.println("Getting artits");
+
+        try {
+            statement = con.prepareStatement("SELECT * FROM Artist");
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("firstname"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println();
+    }
+
+    public void getArtists(List<Artist> artistList) {
+        System.out.println("Loading artists");
+
+        try {
+            statement = con.prepareStatement("SELECT * FROM Artist");
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                artistList.add(new Artist(resultSet.getString("firstName"), resultSet.getString("lastname"), resultSet.getString("address"), resultSet.getInt("telephone"), "", resultSet.getString("cpr"), resultSet.getString("artistname")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println();
+    }
+
     public void insertVenue(Venue venue)
     {
+        System.out.println("Inserting venue into database");
 
+        try {
+            statement = con.prepareStatement("INSERT INTO Venue (cvr, name, address, telephone) VALUES (?, ?, ?, ?)");
+
+            statement.setInt(1, venue.getCvr());
+            statement.setString(2, venue.getName());
+            statement.setString(3, venue.getLocation());
+            statement.setInt(4, venue.getPhoneNumber());
+
+            statement.executeUpdate();
+
+            System.out.println("Venue added");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+    public void getVenues() {
+        System.out.println("Getting venues");
+        try {
+            statement = con.prepareStatement("SELECT * FROM Venue");
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("address"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println();
+    }
+
+    public void getVenues(List<Venue> venueList) {
+        System.out.println("Loading venues");
+
+        try {
+            statement = con.prepareStatement("SELECT * FROM Venue");
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                venueList.add(new Venue(resultSet.getInt("cvr"), resultSet.getString("name"), resultSet.getString("address"), resultSet.getInt("telephone")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println();
+    }
+
     public void deleteVenue(Venue venue)
     {
 
@@ -181,10 +347,63 @@ public class Database
     {
 
     }
-    public void insertBooking(Booking booking)
-    {
 
+    public void insertBooking(Booking booking) {
+        System.out.println("Inserting booking into database");
+
+        try {
+            statement = con.prepareStatement("INSERT INTO Booking (cpr, cvr, email, date, price, comment) VALUES (?, ?, ?, ?, ?, ?)");
+
+            statement.setString(1, booking.getArtist().getCpr());
+            statement.setInt(2, booking.getVenue().getCvr());
+            statement.setString(3, booking.getContactPerson().getEmail());
+            statement.setDate(4, booking.getDate());
+            statement.setInt(5, booking.getPrice());
+            statement.setString(6, booking.getComment());
+
+            statement.executeUpdate();
+
+            System.out.println("Booking added");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+    public void getBookings() {
+        System.out.println("Getting bookings");
+
+        try {
+            statement = con.prepareStatement("SELECT * FROM Booking");
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("cpr"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println();
+    }
+
+    public void getBookings(List<Booking> bookingList) {
+        System.out.println("Loading bookings");
+
+        try {
+            statement = con.prepareStatement("SELECT * FROM Booking");
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                // Not implemented
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println();
+    }
+
     public void deleteBooking(Booking booking)
     {
 
