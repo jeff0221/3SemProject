@@ -85,7 +85,10 @@ public class AddNewArtist_UI
             //TODO: ArtistName in Model.
             //TODO: Also make above look not as bad as it currently does :(
         });
-        btnCancel.setOnAction(event -> close());
+        btnCancel.setOnAction(event -> {
+            AddNewArtist_Controller controller = new AddNewArtist_Controller();
+            controller.closeAddition(addNewArtistStage);
+        });
     }
 
     public void showAndWait()
@@ -94,10 +97,5 @@ public class AddNewArtist_UI
         addNewArtistStage.setScene(scene);
         addNewArtistStage.initModality(Modality.APPLICATION_MODAL);
         addNewArtistStage.showAndWait();
-    }
-
-    public void close()
-    {
-        addNewArtistStage.close();
     }
 }
