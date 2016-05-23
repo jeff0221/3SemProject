@@ -1,5 +1,7 @@
 package GUI;
 
+import Controller.AddNewArtist_Controller;
+import Controller.AddNewContactPerson_Controller;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -71,7 +73,10 @@ public class AddNewContactPerson_UI
 
         scene = new Scene(gridPane);
 
-        btnCancel.setOnAction(event -> close());
+        btnAdd.setOnAction(event ->
+            AddNewContactPerson_Controller.getInstance().operateInsertion(tfFirstName.getText(),tfLastName.getText(),
+            tfAddress.getText(),tfPhoneNumber.getText(),tfEmailAddress.getText()));
+        btnCancel.setOnAction(event -> AddNewContactPerson_Controller.getInstance().closeInsertion(addContactPersonStage));
     }
 
     public void showAndWait()

@@ -9,14 +9,29 @@ import javafx.stage.Stage;
  * Created by Jeffrey on 18-05-2016.
  */
 public class AddNewArtist_Controller{
-    public void operateInsertion(String firstName, String lastName, String address, int phoneNumber,String email, String cpr, String artistName){
+    private static AddNewArtist_Controller instance;
+
+    private AddNewArtist_Controller(){}
+
+    public static AddNewArtist_Controller getInstance(){
+        if(instance == null){
+            instance = new AddNewArtist_Controller();
+            return instance;
+        }else{
+            return instance;
+        }
+    }
+
+    public void operateInsertion(String firstName, String lastName, String address, String phoneNumberString,String email, String cpr, String artistName){
         Warning_UI warning = new Warning_UI();
-        if(warning.alertWindow("Are you want to save?","Are you sure you want to create a new artist with this information?")){
+        int phoneNumber = Integer.parseInt(phoneNumberString);
+
+        if(warning.alertWindow("Are you sure you want to save?","Are you sure you want to create a new artist with this information?")){
         Database.getInstance().insertArtist(new Artist(firstName,lastName,address,phoneNumber,email,cpr,artistName));
         }
     }
 
-    public void closeAddition(Stage stage)
+    public void closeInsertion(Stage stage)
     {
         stage.close();
     }

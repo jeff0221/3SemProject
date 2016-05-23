@@ -77,18 +77,15 @@ public class AddNewArtist_UI
 
         scene = new Scene(gridPane);
 
+        //Add button
         btnAdd.setOnAction(event -> {
-            AddNewArtist_Controller controller = new AddNewArtist_Controller();
-            int phoneNumber = Integer.parseInt(tfPhoneNumber.getText());
-            controller.operateInsertion(tfFirstName.getText(),tfLastName.getText(),tfAddress.getText(),
-            phoneNumber,tfemail.getText(), tfCpr.getText(),"PLACEHOLDERARTISTNAME");
+            AddNewArtist_Controller.getInstance().operateInsertion(tfFirstName.getText(),tfLastName.getText(),tfAddress.getText(),
+            tfemail.getText(),tfemail.getText(), tfCpr.getText(),"PLACEHOLDERARTISTNAME");
             //TODO: ArtistName in Model.
-            //TODO: Also make above look not as bad as it currently does :(
+            //TODO: Also make above look not as bad as it currently does maybe :(
         });
-        btnCancel.setOnAction(event -> {
-            AddNewArtist_Controller controller = new AddNewArtist_Controller();
-            controller.closeAddition(addNewArtistStage);
-        });
+        //Cancel button
+        btnCancel.setOnAction(event -> AddNewArtist_Controller.getInstance().closeInsertion(addNewArtistStage));
     }
 
     public void showAndWait()
