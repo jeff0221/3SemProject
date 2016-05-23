@@ -1,5 +1,6 @@
 package GUI;
 
+import Controller.AddNewArtist_Controller;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -76,6 +77,14 @@ public class AddNewArtist_UI
 
         scene = new Scene(gridPane);
 
+        btnAdd.setOnAction(event -> {
+            AddNewArtist_Controller controller = new AddNewArtist_Controller();
+            int phoneNumber = Integer.parseInt(tfPhoneNumber.getText());
+            controller.operateInsertion(tfFirstName.getText(),tfLastName.getText(),tfAddress.getText(),
+            phoneNumber,tfemail.getText(), tfCpr.getText(),"PLACEHOLDERARTISTNAME");
+            //TODO: ArtistName in Model.
+            //TODO: Also make above look not as bad as it currently does :(
+        });
         btnCancel.setOnAction(event -> close());
     }
 
