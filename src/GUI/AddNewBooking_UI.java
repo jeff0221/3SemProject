@@ -73,6 +73,7 @@ public class AddNewBooking_UI
 
         cancelButton.setLayoutX(310);
         cancelButton.setLayoutY(450);
+        cancelButton.setOnAction(event -> close());
 
 
         pane.getChildren().addAll(titleLabel, hBox, hBox2, textArea, bookButton, cancelButton);
@@ -90,5 +91,9 @@ public class AddNewBooking_UI
         addBookingStage.showAndWait();
     }
 
+    public void close()
+    {
+        addBookingStage.close();
+    }
 
 }
