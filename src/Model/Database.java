@@ -1,7 +1,5 @@
 package Model;
-
 import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
-
 import java.sql.*;
 import java.util.List;
 

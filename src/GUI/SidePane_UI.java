@@ -18,6 +18,7 @@ public class SidePane_UI
     AddNewArtist_UI addNewArtist = new AddNewArtist_UI();
     AddNewVenue_UI addNewVenue = new AddNewVenue_UI();
     AddNewContactPerson_UI addNewContactPerson = new AddNewContactPerson_UI();
+    AddNewBooking_UI addNewBooking = new AddNewBooking_UI();
 
     public SidePane_UI()
     {
@@ -44,6 +45,7 @@ public class SidePane_UI
         newBooking = new Button("New Booking");
         newBooking.setStyle("-fx-border-color: darkred");
         newBooking.setPrefSize(150, 40);
+        newBooking.setOnAction(e -> addNewBooking());
 
         text = new Text("Menu");
         text.setStyle("-fx-font-size: 200%");
@@ -75,5 +77,10 @@ public class SidePane_UI
     public void addNewContactPerson()
     {
         addNewContactPerson.showAndWait();
+    }
+
+    public void addNewBooking()
+    {
+        addNewBooking.showAndWait();
     }
 }
