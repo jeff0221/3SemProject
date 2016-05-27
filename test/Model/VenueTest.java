@@ -84,7 +84,7 @@ public class VenueTest
     {
         Venue venue = new Venue(12345678, "SKT T1", "Staples Center", 44383920);
         String result = venue.getLocation();
-        String expResult = "Madison Square Garden";
+        String expResult = "Staples Center";
 
         assertEquals(expResult, result);
     }
