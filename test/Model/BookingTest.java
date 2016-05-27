@@ -53,7 +53,7 @@ public class BookingTest {
     public void testSetDate() throws Exception
     {
         Booking booking = new Booking();
-        Date date = new Date(2016, 06, 10);
+        Date date = new Date(2016/06/27);
         booking.setDate(date);
         Date result = booking.getDate();
         Date expResult = date;
