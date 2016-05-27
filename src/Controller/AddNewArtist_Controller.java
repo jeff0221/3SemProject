@@ -9,6 +9,7 @@ import javafx.stage.Stage;
  * Created by Jeffrey on 18-05-2016.
  */
 public class AddNewArtist_Controller{
+
     private static AddNewArtist_Controller instance;
 
     private AddNewArtist_Controller(){}
