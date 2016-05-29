@@ -4,7 +4,7 @@ package Model;
  * Created by Zonde on 13-05-2016.
  */
 
-public abstract class Person
+public class Person
 {
     private String firstName;
     private String lastName;
