@@ -14,6 +14,16 @@ public class Booking
     private Venue venue;
     private String comment;
 
+    public Booking(int price, Date date, Artist artist, ContactPerson contactPerson, Venue venue, String comment){
+        this.price = price;
+        this.date = date;
+        this.artist = artist;
+        this.contactPerson = contactPerson;
+        this.venue = venue;
+        this.comment = comment;
+    }
+
+
     public int getPrice()
     {
         return price;

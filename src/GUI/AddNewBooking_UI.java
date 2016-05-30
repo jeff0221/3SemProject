@@ -1,5 +1,6 @@
 package GUI;
 
+import Controller.AddNewBooking_Controller;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -21,16 +22,16 @@ public class AddNewBooking_UI
     HBox hBox2 = new HBox();
 
 
-    ComboBox artistComboBox;
-    ComboBox venueComboBox;
+    ComboBox<Model.Artist> artistComboBox;
+    ComboBox<Model.ContactPerson> contactPersonComboBox; //TODO: implement
+    ComboBox<Model.Venue> venueComboBox;
     DatePicker datePicker = new DatePicker();
     Label titleLabel;
     TextField priceTextField = new TextField();
+    TextField bookingCommentTextField;
     TextArea textArea = new TextArea();
     Button bookButton = new Button("Confirm Booking");
     Button cancelButton = new Button("Cancel");
-
-
 
 
     public AddNewBooking_UI()
@@ -70,10 +71,14 @@ public class AddNewBooking_UI
 
         bookButton.setLayoutX(30);
         bookButton.setLayoutY(450);
+        bookButton.setOnAction(event ->
+        AddNewBooking_Controller.getInstance().operateInsertion(
+        priceTextField.getText(),datePicker,artistComboBox.getSelectionModel().getSelectedItem(),
+        contactPersonComboBox.getSelectionModel().getSelectedItem(),venueComboBox.getSelectionModel().getSelectedItem(),bookingCommentTextField.getText()));
 
         cancelButton.setLayoutX(310);
         cancelButton.setLayoutY(450);
-        cancelButton.setOnAction(event -> close());
+        cancelButton.setOnAction(event -> AddNewBooking_Controller.getInstance().closeInsertion(addBookingStage));
 
 
         pane.getChildren().addAll(titleLabel, hBox, hBox2, textArea, bookButton, cancelButton);
@@ -91,9 +96,6 @@ public class AddNewBooking_UI
         addBookingStage.showAndWait();
     }
 
-    public void close()
-    {
-        addBookingStage.close();
-    }
+
 
 }

@@ -3,7 +3,7 @@ package Controller;
 import javafx.stage.Stage;
 
 /**
- * Created by Zonde on 27-05-2016.
+ * Created by Jeffrey on 27-05-2016.
  */
 public abstract class AddNewPerson_Controller{
     public void closeInsertion(Stage stage)

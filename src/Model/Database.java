@@ -33,6 +33,7 @@ public class Database
             return instance;
         }
     }
+
     public void connectToDatabase()
     {
         try {

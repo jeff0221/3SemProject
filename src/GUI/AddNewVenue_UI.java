@@ -1,5 +1,6 @@
 package GUI;
 
+import Controller.AddNewVenue_Controller;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -68,7 +69,8 @@ public class AddNewVenue_UI
 
         scene = new Scene(gridPane);
 
-        btnCancel.setOnAction(event -> close());
+        btnAdd.setOnAction(event -> AddNewVenue_Controller.getInstance().operateInsertion(tfcvr.getText(),tfName.getText(),tfLocation.getText(),tfPhoneNumber.getText()));
+        btnCancel.setOnAction(event -> AddNewVenue_Controller.getInstance().closeInsertion(addVenueStage));
     }
 
     public void showAndWait()
@@ -80,8 +82,4 @@ public class AddNewVenue_UI
         addVenueStage.showAndWait();
     }
 
-    public void close()
-    {
-        addVenueStage.close();
-    }
 }
