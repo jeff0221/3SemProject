@@ -71,10 +71,10 @@ public class AddNewBooking_UI
 
         bookButton.setLayoutX(30);
         bookButton.setLayoutY(450);
-        bookButton.setOnAction(event ->
-        AddNewBooking_Controller.getInstance().operateInsertion(
-        priceTextField.getText(),datePicker,artistComboBox.getSelectionModel().getSelectedItem(),
-        contactPersonComboBox.getSelectionModel().getSelectedItem(),venueComboBox.getSelectionModel().getSelectedItem(),bookingCommentTextField.getText()));
+        bookButton.setOnAction(event -> AddNewBooking_Controller.getInstance().
+        operateInsertion(priceTextField.getText(),datePicker,artistComboBox.getSelectionModel().getSelectedItem(),
+        contactPersonComboBox.getSelectionModel().getSelectedItem(),venueComboBox.getSelectionModel().getSelectedItem(),
+        bookingCommentTextField.getText()));
 
         cancelButton.setLayoutX(310);
         cancelButton.setLayoutY(450);
