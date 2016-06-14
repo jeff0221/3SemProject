@@ -31,12 +31,16 @@ public class AddNewArtist_UI
     private Label address = new Label("Address: ");
     private Label email = new Label("Email address: ");
 
+    private Label artistName = new Label("Artist name");
+
     private TextField tfCpr = new TextField();
     private TextField tfFirstName = new TextField();
     private TextField tfLastName = new TextField();
     private TextField tfPhoneNumber = new TextField();
     private TextField tfAddress = new TextField();
     private TextField tfemail = new TextField();
+
+    private TextField tfArtistName = new TextField();
 
     private Button btnAdd = new Button("Add");
     private Button btnCancel = new Button("Cancel");
@@ -57,6 +61,8 @@ public class AddNewArtist_UI
         gridPane.add(email, 0, 5);
         gridPane.add(phoneNumber, 0, 6);
 
+        gridPane.add(artistName, 0, 7);
+
         gridPane.add(tfCpr, 1, 1);
         gridPane.add(tfFirstName, 1, 2);
         gridPane.add(tfLastName, 1, 3);
@@ -64,11 +70,13 @@ public class AddNewArtist_UI
         gridPane.add(tfemail, 1, 5);
         gridPane.add(tfPhoneNumber, 1, 6);
 
+        gridPane.add(tfArtistName, 1, 7);
+
         btnCancelContainer.getChildren().addAll(btnCancel);
         btnCancelContainer.setAlignment(Pos.BASELINE_RIGHT);
 
-        gridPane.add(btnAdd, 0, 7);
-        gridPane.add(btnCancelContainer, 1, 7);
+        gridPane.add(btnAdd, 0, 8);
+        gridPane.add(btnCancelContainer, 1, 8);
 
         gridPane.setHgap(10);
         gridPane.setVgap(10);
@@ -79,8 +87,11 @@ public class AddNewArtist_UI
 
         //Add button
         btnAdd.setOnAction(event -> {
+            System.out.println("Artist name = " + tfArtistName.getText());
+            System.out.println("email = " + tfemail.getText());
+
             AddNewArtist_Controller.getInstance().operateInsertion(tfFirstName.getText(),tfLastName.getText(),tfAddress.getText(),
-            tfemail.getText(),tfemail.getText(), tfCpr.getText(),"PLACEHOLDERARTISTNAME");
+            /*tfemail.getText()*/ tfPhoneNumber.getText(),tfemail.getText(), tfCpr.getText(),/*"PLACEHOLDERARTISTNAME"*/ tfArtistName.getText());
             //TODO: ArtistName in Model.
             //TODO: Also make above look not as bad as it currently does maybe :(
         });

@@ -1,5 +1,6 @@
 package Model;
 
+import javafx.beans.property.SimpleStringProperty;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,6 +38,7 @@ public class ArtistTest
         assertEquals(expResult, result);
     }
 
+    // -----------------------------------------------------------
     @Test
     public void testGetArtistName() throws Exception
     {
@@ -57,6 +59,8 @@ public class ArtistTest
 
         assertEquals(expResult, result);
     }
+
+    // -----------------------------------------------------------
 
     @Test
     public void testGetAddress() throws Exception
