@@ -1,7 +1,10 @@
 package Model;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * Created by Zonde on 13-05-2016.
@@ -14,7 +17,7 @@ public class Database
     private PreparedStatement statement;
     private ResultSet resultSet;
 
-    private final String DB_PASSWORD = "Insert MySQL password here";
+    private final String DB_PASSWORD = "doggyspy";
 
     private Database()
     {
@@ -124,7 +127,7 @@ public class Database
 
     private void createTableArtist() {
         try {
-            statement = con.prepareStatement("CREATE TABLE Artifacts_Agency.Artist(cpr char(10) NOT NULL Primary Key, artistName VARCHAR(25), firstname VARCHAR(25) NOT NULL, lastname VARCHAR(30) NOT NULL, address VARCHAR(50), telephone INT)");
+            statement = con.prepareStatement("CREATE TABLE Artifacts_Agency.Artist(cpr char(10) NOT NULL Primary Key, artistName VARCHAR(25), firstname VARCHAR(25) NOT NULL, lastname VARCHAR(30) NOT NULL, address VARCHAR(50), email VARCHAR(50), telephone INT)");
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -212,7 +215,7 @@ public class Database
         System.out.println("Inserting artist into database");
 
         try {
-            statement = con.prepareStatement("INSERT INTO Artist (cpr, artistname, firstname, lastname, address, telephone) VALUES(?, ?, ?, ?, ?, ?)");
+            statement = con.prepareStatement("INSERT INTO Artist (cpr, artistname, firstname, lastname, address, telephone, email) VALUES(?, ?, ?, ?, ?, ?, ?)");
 
             statement.setString(1, artist.getCpr());
             statement.setString(2, artist.getArtistName());
@@ -220,6 +223,8 @@ public class Database
             statement.setString(4, artist.getLastName());
             statement.setString(5, artist.getAddress());
             statement.setInt(6, artist.getPhoneNumber());
+
+            statement.setString(7, artist.getEmail());
 
             statement.executeUpdate();
 
@@ -234,6 +239,7 @@ public class Database
 
     }
 
+    /*
     public void getArtists(List<Artist> artistList) {
         System.out.println("Loading artists");
 
@@ -243,6 +249,24 @@ public class Database
 
             while (resultSet.next()) {
                 artistList.add(new Artist(resultSet.getString("firstName"), resultSet.getString("lastname"), resultSet.getString("address"), resultSet.getInt("telephone"), "", resultSet.getString("cpr"), resultSet.getString("artistname")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println();
+    }
+    */
+
+    public void getArtists(ObservableList<Artist> artistList) {
+        System.out.println("Loading artists");
+
+        try {
+            statement = con.prepareStatement("SELECT * FROM Artist");
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                artistList.add(new Artist(resultSet.getString("firstName"), resultSet.getString("lastname"), resultSet.getString("address"), resultSet.getInt("telephone"), resultSet.getString("email"), resultSet.getString("cpr"), resultSet.getString("artistname")));
             }
         } catch (Exception e) {
             e.printStackTrace();
