@@ -1,6 +1,10 @@
 package GUI;
 
 import Controller.AddNewBooking_Controller;
+import Model.Artist;
+import Model.Venue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -9,6 +13,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by peterzohdy on 24/05/2016.
@@ -44,10 +51,18 @@ public class AddNewBooking_UI
         artistComboBox = new ComboBox();
         artistComboBox.setPromptText("Select Artist");
         artistComboBox.setPrefSize(150, 10);
+        ArrayList<Artist> artistList = new ArrayList<Artist>(); //creates arrayList ready to be made into observable list
+        ObservableList obsArtistList = FXCollections.observableArrayList(artistList); //changes into observable list because observable list can't be instantiated on its own
+        Model.Database.getInstance().getArtists(obsArtistList);
+        artistComboBox.setItems(obsArtistList);
 
         venueComboBox = new ComboBox();
         venueComboBox.setPromptText("Select Venue");
         venueComboBox.setPrefSize(150, 10);
+        ArrayList<Venue> venueList = new ArrayList<Venue>(); //creates arrayList ready to be made into observable list
+        ObservableList obsVenueList = FXCollections.observableArrayList(venueList); //changes into observable list because observable list can't be instantiated on its own
+        Model.Database.getInstance().getVenues(obsVenueList);
+        venueComboBox.setItems(obsVenueList);
 
         hBox.setSpacing(40);
         hBox.setPadding(new Insets(80, 0, 0, 30));
@@ -71,10 +86,11 @@ public class AddNewBooking_UI
 
         bookButton.setLayoutX(30);
         bookButton.setLayoutY(450);
-        bookButton.setOnAction(event -> AddNewBooking_Controller.getInstance().
-        operateInsertion(priceTextField.getText(),datePicker,artistComboBox.getSelectionModel().getSelectedItem(),
-        contactPersonComboBox.getSelectionModel().getSelectedItem(),venueComboBox.getSelectionModel().getSelectedItem(),
-        bookingCommentTextField.getText()));
+        bookButton.setOnAction(event -> {AddNewBooking_Controller.getInstance().
+                operateInsertion(priceTextField.getText(),datePicker,artistComboBox.getSelectionModel().getSelectedItem(),
+                        contactPersonComboBox.getSelectionModel().getSelectedItem(),venueComboBox.getSelectionModel().getSelectedItem(),
+                        bookingCommentTextField.getText());
+        AddNewBooking_Controller.getInstance().closeInsertion(addBookingStage);});
 
         cancelButton.setLayoutX(310);
         cancelButton.setLayoutY(450);
