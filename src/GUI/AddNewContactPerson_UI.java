@@ -74,8 +74,10 @@ public class AddNewContactPerson_UI
         scene = new Scene(gridPane);
 
         btnAdd.setOnAction(event ->
-            AddNewContactPerson_Controller.getInstance().operateInsertion(tfFirstName.getText(),tfLastName.getText(),
-            tfAddress.getText(),tfPhoneNumber.getText(),tfEmailAddress.getText()));
+        {AddNewContactPerson_Controller.getInstance().operateInsertion(tfFirstName.getText(),tfLastName.getText(),
+            tfAddress.getText(),tfPhoneNumber.getText(),tfEmailAddress.getText());
+            addContactPersonStage.close();
+        });
         btnCancel.setOnAction(event -> AddNewContactPerson_Controller.getInstance().closeInsertion(addContactPersonStage));
     }
 

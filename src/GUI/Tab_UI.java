@@ -73,11 +73,11 @@ public class Tab_UI
         TableColumn address = new TableColumn("Address");
         address.setPrefWidth(100);
         TableColumn cpr = new TableColumn("Cpr");
-        cpr.setPrefWidth(50);
+        cpr.setPrefWidth(75);
         TableColumn phoneNumber = new TableColumn("Phone Number");
-        phoneNumber.setPrefWidth(120);
+        phoneNumber.setPrefWidth(105);
         TableColumn email = new TableColumn("E-Mail");
-        email.setPrefWidth(120);
+        email.setPrefWidth(110);
 
         // Set artistTable columns to TableColumns
         artistTable.getColumns().addAll(artistName, firstName, lastName, address, cpr, phoneNumber, email);
