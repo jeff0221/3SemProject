@@ -89,9 +89,4 @@ public class AddNewContactPerson_UI
         addContactPersonStage.initModality(Modality.APPLICATION_MODAL);
         addContactPersonStage.showAndWait();
     }
-
-    public void close()
-    {
-        addContactPersonStage.close();
-    }
 }
