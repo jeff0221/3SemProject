@@ -79,6 +79,9 @@ public class AddNewBooking_UI
         hBox.getChildren().addAll(artistComboBox, venueComboBox);
         hBox2.getChildren().addAll(datePicker, priceTextField);
 
+        //fasjhfdaskljdfhaslkdjfhasdklfjahsdkfjads
+
+
         textArea.setLayoutX(50);
         textArea.setLayoutY(240);
         textArea.setMaxWidth(300);
