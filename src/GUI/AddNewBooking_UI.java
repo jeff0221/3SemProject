@@ -36,7 +36,7 @@ public class AddNewBooking_UI
 
     public AddNewBooking_UI()
     {
-        titleLabel = new Label("Add new artist");
+        titleLabel = new Label("Add New Booking");
         titleLabel.setFont(new Font("Verdana", 20));
         titleLabel.setLayoutX(125);
         titleLabel.setLayoutY(25);

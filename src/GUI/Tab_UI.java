@@ -36,9 +36,9 @@ public class Tab_UI
         venueTab = new Tab("Venue");
         venueTab.setClosable(false);
         bookingTab = new Tab("Bookings");
-        bookingTab.setClosable(true);
+        bookingTab.setClosable(false);
         contactPersonTab = new Tab("Contact Person");
-        contactPersonTab.setClosable(true);
+        contactPersonTab.setClosable(false);
 
         // Load tables from Database
         Database.getInstance().getArtists(artistList);
@@ -65,12 +65,19 @@ public class Tab_UI
 
         // Create TableColumn objects for artistTable
         TableColumn artistName = new TableColumn("Artist Name");
+        artistName.setPrefWidth(100);
         TableColumn firstName = new TableColumn("First Name");
+        firstName.setPrefWidth(100);
         TableColumn lastName = new TableColumn("Last Name");
+        lastName.setPrefWidth(100);
         TableColumn address = new TableColumn("Address");
+        address.setPrefWidth(100);
         TableColumn cpr = new TableColumn("Cpr");
-        TableColumn phoneNumber = new TableColumn("PhoneNumber");
-        TableColumn email = new TableColumn("eMail");
+        cpr.setPrefWidth(75);
+        TableColumn phoneNumber = new TableColumn("Phone Number");
+        phoneNumber.setPrefWidth(105);
+        TableColumn email = new TableColumn("E-Mail");
+        email.setPrefWidth(110);
 
         // Set artistTable columns to TableColumns
         artistTable.getColumns().addAll(artistName, firstName, lastName, address, cpr, phoneNumber, email);
@@ -96,10 +103,15 @@ public class Tab_UI
 
         // Create TableColumn objects for contactPersonTable
         TableColumn firstName = new TableColumn("First Name");
+        firstName.setPrefWidth(100);
         TableColumn lastName = new TableColumn("Last Name");
+        lastName.setPrefWidth(100);
         TableColumn address = new TableColumn("Address");
+        address.setPrefWidth(100);
         TableColumn phoneNumber = new TableColumn("Phone Number");
-        TableColumn email = new TableColumn("Email");
+        phoneNumber.setPrefWidth(120);
+        TableColumn email = new TableColumn("E-Mail");
+        email.setPrefWidth(120);
 
         // Set contactPersonTable columns to TableColumns
         contactPersonTable.getColumns().addAll(firstName, lastName, address, phoneNumber, email);
@@ -123,11 +135,17 @@ public class Tab_UI
 
         // Create TableColumn objects for bookingTable
         TableColumn date = new TableColumn("Date");
+        date.setPrefWidth(100);
         TableColumn artist = new TableColumn("Artist");
+        artist.setPrefWidth(100);
         TableColumn contactPerson = new TableColumn("Contact Person");
+        contactPerson.setPrefWidth(150);
         TableColumn venue = new TableColumn("Venue");
+        venue.setPrefWidth(100);
         TableColumn price = new TableColumn("Price");
+        price.setPrefWidth(100);
         TableColumn comment = new TableColumn("Comment");
+        comment.setPrefWidth(150);
 
         // Set bookingTable columns to TabeColumns
         bookingTable.getColumns().addAll(date, artist, contactPerson, venue, price, comment);
