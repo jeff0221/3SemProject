@@ -45,6 +45,7 @@ public class SidePane_UI extends Start_UI
 
         adMin = new Button("Admin");
         adMin.setPrefSize(150, 40);
+        adMin.setStyle("-fx-border-color: darkblue");
         adMin.setOnAction(event ->
         {
             AdminPane_UI side = new AdminPane_UI();
