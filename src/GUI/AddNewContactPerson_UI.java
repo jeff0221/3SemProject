@@ -19,7 +19,6 @@ import javafx.stage.Stage;
  */
 public class AddNewContactPerson_UI
 {
-
     private Scene scene;
     private Stage addContactPersonStage;
     private GridPane gridPane = new GridPane();

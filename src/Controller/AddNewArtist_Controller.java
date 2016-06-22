@@ -1,5 +1,6 @@
 package Controller;
 
+import GUI.Start_UI;
 import GUI.Warning_UI;
 import Model.Artist;
 import Model.Database;
@@ -28,7 +29,10 @@ public class AddNewArtist_Controller{
         int phoneNumber = Integer.parseInt(phoneNumberString);
 
         if(warning.alertWindow("Are you sure you want to save?","Are you sure you want to create a new artist with this information?")){
-        Database.getInstance().insertArtist(new Artist(firstName,lastName,address,phoneNumber,email,cpr,artistName));
+            Artist insertArtist = new Artist(firstName,lastName,address,phoneNumber,email,cpr,artistName);
+            Database.getInstance().insertArtist(insertArtist);
+            Start_UI.getArtistList().add(insertArtist);
+            Start_UI.update_UI();
         }
     }
 

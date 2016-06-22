@@ -2,6 +2,7 @@ package GUI;
 
 import Controller.AddNewBooking_Controller;
 import Model.Artist;
+import Model.Database;
 import Model.Venue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,18 +29,12 @@ public class AddNewBooking_UI
     HBox hBox = new HBox();
     HBox hBox2 = new HBox();
 
-
-    ComboBox<Model.Artist> artistComboBox;
-    ComboBox<Model.ContactPerson> contactPersonComboBox; //TODO: implement
-    ComboBox<Model.Venue> venueComboBox;
     DatePicker datePicker = new DatePicker();
     Label titleLabel;
     TextField priceTextField = new TextField();
-    TextField bookingCommentTextField;
     TextArea textArea = new TextArea();
     Button bookButton = new Button("Confirm Booking");
     Button cancelButton = new Button("Cancel");
-
 
     public AddNewBooking_UI()
     {
@@ -48,26 +43,10 @@ public class AddNewBooking_UI
         titleLabel.setLayoutX(125);
         titleLabel.setLayoutY(25);
 
-        artistComboBox = new ComboBox();
-        artistComboBox.setPromptText("Select Artist");
-        artistComboBox.setPrefSize(150, 10);
-        ArrayList<Artist> artistList = new ArrayList<Artist>(); //creates arrayList ready to be made into observable list
-        ObservableList obsArtistList = FXCollections.observableArrayList(artistList); //changes into observable list because observable list can't be instantiated on its own
-        Model.Database.getInstance().getArtists(obsArtistList);
-        artistComboBox.setItems(obsArtistList);
-
-        venueComboBox = new ComboBox();
-        venueComboBox.setPromptText("Select Venue");
-        venueComboBox.setPrefSize(150, 10);
-        ArrayList<Venue> venueList = new ArrayList<Venue>(); //creates arrayList ready to be made into observable list
-        ObservableList obsVenueList = FXCollections.observableArrayList(venueList); //changes into observable list because observable list can't be instantiated on its own
-        Model.Database.getInstance().getVenues(obsVenueList);
-        venueComboBox.setItems(obsVenueList);
-
         hBox.setSpacing(40);
         hBox.setPadding(new Insets(80, 0, 0, 30));
 
-        hBox2.setLayoutY(80);
+        hBox2.setLayoutY(90);
         hBox2.setSpacing(40);
         hBox2.setPadding(new Insets(80, 0, 0, 30));
 
@@ -76,11 +55,8 @@ public class AddNewBooking_UI
         priceTextField.setMaxWidth(150);
         priceTextField.setPromptText("Artist salary in DKK");
 
-        hBox.getChildren().addAll(artistComboBox, venueComboBox);
+        hBox.getChildren().addAll(Start_UI.getComboBoxArtist(),Start_UI.getComboBoxVenue(),Start_UI.getComboBoxContactPerson());
         hBox2.getChildren().addAll(datePicker, priceTextField);
-
-        //fasjhfdaskljdfhaslkdjfhasdklfjahsdkfjads
-
 
         textArea.setLayoutX(50);
         textArea.setLayoutY(240);
@@ -90,21 +66,18 @@ public class AddNewBooking_UI
         bookButton.setLayoutX(30);
         bookButton.setLayoutY(450);
         bookButton.setOnAction(event -> {AddNewBooking_Controller.getInstance().
-                operateInsertion(priceTextField.getText(),datePicker,artistComboBox.getSelectionModel().getSelectedItem(),
-                        contactPersonComboBox.getSelectionModel().getSelectedItem(),venueComboBox.getSelectionModel().getSelectedItem(),
-                        bookingCommentTextField.getText());
+                operateInsertion(priceTextField.getText(),datePicker, Start_UI.getComboBoxArtist().getSelectionModel().getSelectedItem(),
+                        Start_UI.getComboBoxContactPerson().getSelectionModel().getSelectedItem(), Start_UI.getComboBoxVenue().getSelectionModel().getSelectedItem(),
+                        textArea.getText());
         AddNewBooking_Controller.getInstance().closeInsertion(addBookingStage);});
 
         cancelButton.setLayoutX(310);
         cancelButton.setLayoutY(450);
         cancelButton.setOnAction(event -> AddNewBooking_Controller.getInstance().closeInsertion(addBookingStage));
 
+        pane.getChildren().addAll(titleLabel,hBox, textArea, hBox2, bookButton, cancelButton);
 
-        pane.getChildren().addAll(titleLabel, hBox, hBox2, textArea, bookButton, cancelButton);
-
-
-        scene = new Scene(pane, 400, 500);
-
+        scene = new Scene(pane, 610, 500);
     }
 
     public void showAndWait()
@@ -114,7 +87,4 @@ public class AddNewBooking_UI
         addBookingStage.initModality(Modality.APPLICATION_MODAL);
         addBookingStage.showAndWait();
     }
-
-
-
 }

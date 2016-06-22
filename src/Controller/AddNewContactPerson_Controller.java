@@ -1,5 +1,6 @@
 package Controller;
 
+import GUI.Start_UI;
 import GUI.Warning_UI;
 import Model.ContactPerson;
 import Model.Database;
@@ -28,7 +29,10 @@ public class AddNewContactPerson_Controller{
         int phoneNumber = Integer.parseInt(phoneNumberString);
 
         if(warning.alertWindow("Are you sure you want to save?","Are you sure you want to create a new contact with this information?")){
-            Database.getInstance().insertContactPerson(new ContactPerson(firstName, lastName, address, phoneNumber, email));
+            ContactPerson insertContactPerson = new ContactPerson(firstName, lastName, address, phoneNumber, email);
+            Database.getInstance().insertContactPerson(insertContactPerson);
+            Start_UI.getContactPersonList().add(insertContactPerson);
+            Start_UI.update_UI();
         }
     }
 

@@ -85,18 +85,15 @@ public class AddNewArtist_UI
 
         scene = new Scene(gridPane);
 
-        //Add button
         btnAdd.setOnAction(event -> {
             System.out.println("Artist name = " + tfArtistName.getText());
             System.out.println("email = " + tfemail.getText());
 
             AddNewArtist_Controller.getInstance().operateInsertion(tfFirstName.getText(),tfLastName.getText(),tfAddress.getText(),
-            /*tfemail.getText()*/ tfPhoneNumber.getText(),tfemail.getText(), tfCpr.getText(),/*"PLACEHOLDERARTISTNAME"*/ tfArtistName.getText());
+            tfPhoneNumber.getText(),tfemail.getText(), tfCpr.getText(), tfArtistName.getText());
             addNewArtistStage.close();
-            //TODO: ArtistName in Model.
-            //TODO: Also make above look not as bad as it currently does maybe :(
         });
-        //Cancel button
+
         btnCancel.setOnAction(event -> AddNewArtist_Controller.getInstance().closeInsertion(addNewArtistStage));
     }
 

@@ -10,4 +10,7 @@ public class ContactPerson extends Person
         super(firstName, lastName, address, phoneNumber, email);
     }
 
+    public String toString() {
+        return email;
+    }
 }

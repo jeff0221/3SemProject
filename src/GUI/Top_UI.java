@@ -25,6 +25,5 @@ public class Top_UI
 
         return vBox;
     }
-
 }
 

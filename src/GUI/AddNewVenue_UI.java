@@ -19,7 +19,6 @@ import javafx.stage.Stage;
  */
 public class AddNewVenue_UI
 {
-
     private Scene scene;
     private Stage addVenueStage;
     private GridPane gridPane = new GridPane();
@@ -70,6 +69,7 @@ public class AddNewVenue_UI
         scene = new Scene(gridPane);
 
         btnAdd.setOnAction(event -> AddNewVenue_Controller.getInstance().operateInsertion(tfcvr.getText(),tfName.getText(),tfLocation.getText(),tfPhoneNumber.getText()));
+
         btnCancel.setOnAction(event -> AddNewVenue_Controller.getInstance().closeInsertion(addVenueStage));
     }
 
@@ -81,5 +81,4 @@ public class AddNewVenue_UI
         addVenueStage.initModality(Modality.APPLICATION_MODAL);
         addVenueStage.showAndWait();
     }
-
 }

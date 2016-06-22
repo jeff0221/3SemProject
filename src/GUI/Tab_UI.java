@@ -1,11 +1,8 @@
 package GUI;
 
-import Model.Artist;
-import Model.Booking;
+import Model.*;
 
 
-import Model.ContactPerson;
-import Model.Database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -22,10 +19,6 @@ public class Tab_UI
     TabPane tabPane;
     Tab artistTab, venueTab, bookingTab, contactPersonTab;
 
-    ObservableList<Booking> bookingList = FXCollections.observableArrayList();
-    ObservableList<Artist> artistList = FXCollections.observableArrayList();
-    ObservableList<ContactPerson> contactPersonList = FXCollections.observableArrayList();
-
     public TabPane tabPane_UI()
     {
         tabPane = new TabPane();
@@ -40,18 +33,11 @@ public class Tab_UI
         contactPersonTab = new Tab("Contact Person");
         contactPersonTab.setClosable(false);
 
-        // Load tables from Database
-        Database.getInstance().getArtists(artistList);
-        Database.getInstance().getBookings(bookingList);
-        Database.getInstance().getContactPersons(contactPersonList);
-        //System.out.println(artistList.get(0).getArtistName());
-        //System.out.println(artistList.get(0).getFirstName());
-        //System.out.println(artistList.get(0).getEmail());
-
         // Set the content of Tabs to TableViews
         artistTab.setContent(getTableArtists());
         bookingTab.setContent(getTableBookings());
         contactPersonTab.setContent(getTableContactPersons());
+        venueTab.setContent(getTableVenue());
 
         // Add the tab to tabPane
         tabPane.getTabs().addAll(artistTab, bookingTab, venueTab, contactPersonTab);
@@ -60,9 +46,6 @@ public class Tab_UI
     }
 
     public TableView<Artist> getTableArtists() {
-        // Create TableView for artistTable
-        TableView<Artist> artistTable = new TableView<>();
-
         // Create TableColumn objects for artistTable
         TableColumn artistName = new TableColumn("Artist Name");
         artistName.setPrefWidth(100);
@@ -80,7 +63,7 @@ public class Tab_UI
         email.setPrefWidth(110);
 
         // Set artistTable columns to TableColumns
-        artistTable.getColumns().addAll(artistName, firstName, lastName, address, cpr, phoneNumber, email);
+        Start_UI.getTableArtist().getColumns().addAll(artistName, firstName, lastName, address, cpr, phoneNumber, email);
 
         // Set artistName column to update from field in Artist
         firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -92,15 +75,13 @@ public class Tab_UI
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         // Set the observable list for table
-        artistTable.setItems(artistList);
+        Start_UI.getTableArtist().setItems((ObservableList<Artist>) Start_UI.getArtistList());
 
-        return artistTable;
+        //return artistTable;
+        return Start_UI.getTableArtist();
     }
 
     public TableView<ContactPerson> getTableContactPersons() {
-        // Create TableView object contactPersonsTable
-        TableView<ContactPerson> contactPersonTable = new TableView<>();
-
         // Create TableColumn objects for contactPersonTable
         TableColumn firstName = new TableColumn("First Name");
         firstName.setPrefWidth(100);
@@ -114,7 +95,7 @@ public class Tab_UI
         email.setPrefWidth(120);
 
         // Set contactPersonTable columns to TableColumns
-        contactPersonTable.getColumns().addAll(firstName, lastName, address, phoneNumber, email);
+        Start_UI.getTableContactPerson().getColumns().addAll(firstName, lastName, address, phoneNumber, email);
 
         // Set columns to update from appropriate fields
         firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -124,15 +105,13 @@ public class Tab_UI
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         // Set the observable list for table
-        contactPersonTable.setItems(contactPersonList);
+        Start_UI.getTableContactPerson().setItems((ObservableList<ContactPerson>) Start_UI.getContactPersonList());
 
-        return contactPersonTable;
+        //return contactPersonTable;
+        return Start_UI.getTableContactPerson();
     }
 
     public TableView<Booking> getTableBookings() {
-        // Create TableView object bookingTable
-        TableView<Booking> bookingTable = new TableView<>();
-
         // Create TableColumn objects for bookingTable
         TableColumn date = new TableColumn("Date");
         date.setPrefWidth(100);
@@ -148,17 +127,47 @@ public class Tab_UI
         comment.setPrefWidth(150);
 
         // Set bookingTable columns to TabeColumns
-        bookingTable.getColumns().addAll(date, artist, contactPerson, venue, price, comment);
+        Start_UI.getTableBooking().getColumns().addAll(date, artist, contactPerson, venue, price, comment);
 
         // Set artsit column to update from field artist in Booking
-        artist.setCellValueFactory(new PropertyValueFactory<>("artsit"));
+        artist.setCellValueFactory(new PropertyValueFactory<>("artist"));
+        contactPerson.setCellValueFactory(new PropertyValueFactory<>("contactPerson"));
+        venue.setCellValueFactory(new PropertyValueFactory<>("venue"));
+        price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
 
         // Set the observable list for table
-        bookingTable.setItems(bookingList);
+        Start_UI.getTableBooking().setItems((ObservableList<Booking>) Start_UI.getBookingList());
 
-
-        return bookingTable;
+        //return bookingTable;
+        return Start_UI.getTableBooking();
     }
 
+    public TableView<Venue> getTableVenue() {
+        // Create TableColumn objects for bookingTable
+        TableColumn cvr = new TableColumn("cvr");
+        cvr.setPrefWidth(100);
+        TableColumn name = new TableColumn("Name");
+        name.setPrefWidth(100);
+        TableColumn location = new TableColumn("Location");
+        location.setPrefWidth(100);
+        TableColumn phoneNumber = new TableColumn("Phone Nummber");
+        phoneNumber.setPrefWidth(150);
 
+        // Set venueTable columns to TabeColumns
+        Start_UI.getTableVenue().getColumns().addAll(cvr, name, location, phoneNumber);
+
+        // Set columns to update from appropriate fields
+        cvr.setCellValueFactory(new PropertyValueFactory<>("cvr"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        location.setCellValueFactory(new PropertyValueFactory<>("location"));
+        phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
+        // Set the observable list for table
+        Start_UI.getTableVenue().setItems((ObservableList<Venue>) Start_UI.getVenueList());
+
+        //return venueTable;
+        return Start_UI.getTableVenue();
+    }
 }

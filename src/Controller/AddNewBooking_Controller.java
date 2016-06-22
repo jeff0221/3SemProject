@@ -1,5 +1,6 @@
 package Controller;
 
+import GUI.Start_UI;
 import GUI.Warning_UI;
 import Model.*;
 import javafx.scene.control.DatePicker;
@@ -39,7 +40,10 @@ public class AddNewBooking_Controller{
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
         if(warning.alertWindow("Are you sure you want to save?","Are you sure you want to create a new booking with this information?")){
-            Database.getInstance().insertBooking(new Booking(price, sqlDate, artist, contactPerson, venue, comment));
+            Booking booking = new Booking(price, sqlDate, artist, contactPerson, venue, comment);
+            Database.getInstance().insertBooking(booking);
+            Start_UI.getBookingList().add(booking);
+            Start_UI.update_UI();
         }
     }
 

@@ -162,8 +162,6 @@ public class Database
         }
     }
 
-
-
     public void insertContactPerson(ContactPerson person)
     {
         System.out.println("Inserting contact person into database");
@@ -236,30 +234,11 @@ public class Database
         }
     }
 
-    public void updateArtist(Artist artist) {
+    public void deleteArtist(Artist artist) {
 
     }
 
-    /*
     public void getArtists(List<Artist> artistList) {
-        System.out.println("Loading artists");
-
-        try {
-            statement = con.prepareStatement("SELECT * FROM Artist");
-            resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                artistList.add(new Artist(resultSet.getString("firstName"), resultSet.getString("lastname"), resultSet.getString("address"), resultSet.getInt("telephone"), "", resultSet.getString("cpr"), resultSet.getString("artistname")));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println();
-    }
-    */
-
-    public void getArtists(ObservableList<Artist> artistList) {
         System.out.println("Loading artists");
 
         try {
@@ -272,8 +251,10 @@ public class Database
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
-        System.out.println();
+    public void updateArtist(Artist artist) {
+
     }
 
     public void insertVenue(Venue venue)
@@ -297,6 +278,11 @@ public class Database
         }
     }
 
+    public void deleteVenue(Venue venue)
+    {
+
+    }
+
     public void getVenues(List<Venue> venueList) {
         System.out.println("Loading venues");
 
@@ -314,10 +300,6 @@ public class Database
         System.out.println();
     }
 
-    public void deleteVenue(Venue venue)
-    {
-
-    }
     public void updateVenue(Venue venue)
     {
 
@@ -345,29 +327,83 @@ public class Database
         }
     }
 
-    public void getBookings(List<Booking> bookingList) {
-        System.out.println("Loading bookings");
+    public void deleteBooking(Booking booking)
+    {
 
+    }
+
+    public void getBookings(List<Booking> bookingList) {
+        System.out.println("Loading Bookings");
         try {
             statement = con.prepareStatement("SELECT * FROM Booking");
+            ResultSet localResultSet = statement.executeQuery();
+
+            while (localResultSet.next()) {
+                Artist artist = getArtist(localResultSet.getString("cpr"));
+                Venue venue = getVenue(localResultSet.getInt("cvr"));
+                ContactPerson contactPerson = getContactPerson(localResultSet.getString("email"));
+
+                bookingList.add(new Booking(localResultSet.getInt("price"), localResultSet.getDate("date"), artist, contactPerson, venue, localResultSet.getString("comment")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateBooking(Booking booking)
+    {
+
+    }
+
+    private Artist getArtist(String cpr) {
+        Artist artist = null;
+
+        try {
+            statement = con.prepareStatement("SELECT * FROM Artist WHERE cpr = " + cpr);
             resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                // Not implemented
+            if (resultSet.next()) {
+                artist = new Artist(resultSet.getString("firstname"), resultSet.getString("lastname"), resultSet.getString("address"), resultSet.getInt("telephone"), resultSet.getString("email"), resultSet.getString("cpr"), resultSet.getString("artistName"));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        System.out.println();
+        return artist;
     }
 
-    public void deleteBooking(Booking booking)
-    {
+    private Venue getVenue(int cvr) {
+        Venue venue = null;
 
-    }
-    public void updateBooking(Booking booking)
-    {
+        try {
+            statement = con.prepareStatement("SELECT * FROM Venue WHERE cvr = " + cvr);
+            resultSet = statement.executeQuery();
 
+            if (resultSet.next()) {
+                venue = new Venue(resultSet.getInt("cvr"), resultSet.getString("name"), resultSet.getString("address"), resultSet.getInt("telephone"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return venue;
     }
+
+    private ContactPerson getContactPerson(String email) {
+        ContactPerson contactPerson = null;
+
+        try {
+            statement = con.prepareStatement("SELECT * FROM ContactPerson WHERE email = '" + email + "'");
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                contactPerson = new ContactPerson(resultSet.getString("firstname"), resultSet.getString("lastname"), resultSet.getString("address"), resultSet.getInt("telephone"), resultSet.getString("email"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return contactPerson;
+    }
+
 }

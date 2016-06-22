@@ -10,7 +10,7 @@ public class Person
     private String lastName;
     private int phoneNumber;
     private String address;
-    private String email;
+    protected String email;
 
     public Person()
     {

@@ -6,7 +6,6 @@ package Model;
 
 public class Venue
 {
-    //private String cvr;
     private int cvr;
     private String name;
     private String location;
@@ -18,18 +17,6 @@ public class Venue
         this.location = location;
         this.phoneNumber = phoneNumber;
     }
-
-    /*
-    public String getCvr()
-    {
-        return cvr;
-    }
-
-    public void setCvr(String cvr)
-    {
-        this.cvr = cvr;
-    }
-    */
 
     public int getCvr() {
         return cvr;
@@ -67,5 +54,9 @@ public class Venue
     public void setLocation(String location)
     {
         this.location = location;
+    }
+
+    public String toString() {
+        return name;
     }
 }
