@@ -31,7 +31,7 @@ public class AdminPane_UI extends Start_UI
 //        edit.setOnAction(e -> );
 
         back = new Button("Back");
-        back.setPrefSize(150, 20);
+        back.setPrefSize(150, 40);
 //        back.setOnAction(event -> );
 
         text = new Text("Admin");
@@ -44,6 +44,7 @@ public class AdminPane_UI extends Start_UI
         gridPane.add(text, 0, 3, 2, 1);
         gridPane.add(edit, 0, 6, 2, 1);
         gridPane.add(delete, 0, 9, 2, 1);
+        gridPane.add(back, 0, 27, 2, 1);
 
         return gridPane;
     }
