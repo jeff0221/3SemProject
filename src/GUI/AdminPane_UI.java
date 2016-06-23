@@ -9,9 +9,9 @@ import javafx.scene.text.Text;
 /**
  * Created by Stormwind on 21/06/2016.
  */
-public class AdminPane_UI
+public class AdminPane_UI extends Start_UI
 {
-    Button delete, edit;
+    Button delete, edit, back;
     Text text;
     GridPane gridPane;
 
@@ -29,6 +29,10 @@ public class AdminPane_UI
         edit = new Button("Edit");
         edit.setPrefSize(150, 20);
 //        edit.setOnAction(e -> );
+
+        back = new Button("Back");
+        back.setPrefSize(150, 20);
+//        back.setOnAction(event -> );
 
         text = new Text("Admin");
         text.setStyle("-fx-font-size: 200%");

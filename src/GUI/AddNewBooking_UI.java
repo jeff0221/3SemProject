@@ -40,7 +40,7 @@ public class AddNewBooking_UI
     {
         titleLabel = new Label("Add New Booking");
         titleLabel.setFont(new Font("Verdana", 20));
-        titleLabel.setLayoutX(125);
+        titleLabel.setLayoutX(205);
         titleLabel.setLayoutY(25);
 
         hBox.setSpacing(40);
